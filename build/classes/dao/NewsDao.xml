@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.NewsDao">
+	<select id="newsshow"  resultType="News">
+		SELECT * from t_news
+	</select>
+	
+	<!-- 添加 -->
+	<insert id="newsadd" parameterType="News">
+	    	 insert into t_news(news_id,news_detail,news_title,news_pic)
+	         values(#{news_id},#{news_detail},#{news_title},#{news_pic})
+	</insert>    
+	
+	<!-- 删除 -->
+	<delete id="newsdel" parameterType="Integer">
+	    delete from t_news where news_id=#{news_id}
+	</delete>
+	
+	<!-- 更新 -->
+	<update id="newsupd" parameterType="News">
+	    update t_news 
+	    <set>
+	        <if test="news_detail!=null">
+	            news_detail=#{news_detail},
+	        </if>
+
+	        <if test="news_title!=null">
+	            news_title=#{news_title},
+	        </if>
+	    </set>
+	    where news_id=#{news_id}
+	</update>
+	
+	<!-- 根据id获取电影信息 -->
+	<select id="getNewsById" parameterType="Integer" resultType="News">
+	    select * from t_news where news_id = #{news_id}
+	</select>
+	
+</mapper>

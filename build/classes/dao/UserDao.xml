@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.UserDao" >
+    <!-- 查询用户 -->
+    <select id="findUser" parameterType="String" resultType="user">
+	    select * from t_sys_user
+	    where user_name = #{username}
+	    and user_pass =#{password}
+    </select>
+    
+      <!-- 查询客户 -->
+    <select id="findCustomer" parameterType="String" resultType="Customer">
+	    select * from t_customer
+	    where customer_name = #{customer_name}
+	    and customer_pass =#{customer_pass}
+    </select>
+   <!--显示用户-->
+    <select id="showUser" parameterType="String" resultType="Customer">
+    	select * from t_customer
+    </select>
+    <!--增添用户-->
+    <insert id="add" parameterType="po.Customer">
+    	insert into t_customer (customer_name,customer_pass)
+    	values(#{customer_name},#{customer_pass})
+    </insert>
+    <!--根据用户id查找用户-->
+    <select id="getUserById" parameterType="Integer" resultType="Customer">
+	    select * from t_customer where customer_id = #{customer_id}
+	</select>
+	 <!-- BMI测试  -->
+	 <update id="addbmi" parameterType="Customer">
+	    update t_customer set customer_bmi = #{customer_bmi} where customer_id = #{customer_id}
+	 </update>
+   
+    <!--修改用户-->
+    <update id="updateUser" parameterType="po.Customer">
+    	update t_customer
+    	 <set>
+	        <if test="customer_name!=null">
+	            customer_name=#{customer_name},
+	        </if>
+	      <if test="customer_pass!=null">
+	            customer_pass=#{customer_pass},
+	        </if>
+	        <if test="vip!=-1">
+	        	vip=#{vip}
+	        </if>
+	    </set>
+	    where customer_id=#{customer_id}
+    </update>
+    <!--删除用户-->
+    <delete id="deleteUser" parameterType="Integer">
+    	delete from t_customer where customer_id =#{customer_id}
+    </delete>
+    <!-- 查询 -->
+    <select id="serachUser" resultType="Customer">
+    	select * from t_customer where customer_name like "%"#{customer_name}"%"
+    </select>
+</mapper>

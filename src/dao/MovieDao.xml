@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.MovieDao">
+
+							<!-- 电影操作 -->
+							
+	<!-- 显示全部电影 -->
+	<select id="show"  resultType="Commodity">
+		SELECT * from t_commodity join t_commodity_type on t_commodity.commodity_type = t_commodity_type.commodity_type
+	</select>
+	
+	<!-- 添加电影 -->
+	<insert id="addm" parameterType="Movie">
+	   insert into t_commodity(commodity_name,commodity_type,commodity_detail,commodity_picture)
+    	values(#{commodity_name},#{commodity_type},#{commodity_detail},{commodity_picture})
+	</insert>
+	
+	<!-- 删除电影信息 -->
+	<delete id="delm" parameterType="Integer">
+	    delete from t_commodity where commodity_id=#{commodity_id}
+	</delete>
+	
+	<!-- 更新电影 -->
+	<update id="updm" parameterType="Movie">
+	    update t_commodity 
+	    <set>
+	        <if test="commodity_name!=null">
+	            commodity_name=#{commodity_name},
+	        </if>
+
+	        <if test="commodity_type!=null">
+	            commodity_type=#{commodity_type},
+	        </if>
+	        
+	        <if test="commodity_detail!=null">
+	            commodity_detail=#{commodity_detail},
+	        </if>
+	        
+	    </set>
+	    where commodity_id=#{commodity_id}
+	</update>
+	
+	<!-- 详情 -->
+	<select id="getMovieById"  resultType="Commodity">
+	    select * from t_commodity join t_commodity_type on t_commodity.commodity_type = t_commodity_type.commodity_type where commodity_id = #{commodity_id}
+	</select>
+	<!-- 查询 -->
+	<select id="search" resultType="Commodity">
+		select * from t_commodity join t_commodity_type on t_commodity.commodity_type = t_commodity_type.commodity_type where commodity_name like "%"#{commodity_name}"%"
+	</select>
+	
+	<!-- 视频 -->
+	<select id="getVideo" resultType="Movie">
+		select video from movies where movie_id = 1
+	</select>
+							<!-- 电影分类操作 -->
+							
+	<!-- 显示电影分类 -->
+	<select id="showtype"  resultType="CommodityType">
+		SELECT * from t_commodity_type
+	</select>
+	
+	<!-- 添加电影分类 -->
+	<insert id="addtype" parameterType="CommodityType">
+	   insert into t_commodity_type (commodity_type_name) values (#{commodity_type_name})
+	</insert>    
+	
+	
+	<!-- 删除电影分类 -->
+	<delete id="deltype" parameterType="int">
+	    delete from t_commodity_type where commodity_type_id=#{commodity_type_id}
+	</delete>
+	
+	<!-- 修改电影分类 -->
+	<update id="updtype" parameterType="CommodityType">
+	    update t_commodity_type
+	    <set>
+	        <if test="commodity_type_name!=null">
+	            commodity_type_name=#{commodity_type_name},
+	        </if>
+	    </set>
+	    where commodity_type_id=#{commodity_type_id}
+	</update>
+	
+	<!-- 根据id查找电影分类 -->
+	<select id="getMovieTypeById" parameterType="int" resultType="CommodityType">
+	    select * from t_commodity_type where commodity_type_id = #{commodity_type_id}
+	</select>
+		<!-- 小知识详情 -->
+	<select id="getclassById"  resultType="News">
+	     select * from t_news where news_id = #{news_id}
+	</select>
+</mapper>

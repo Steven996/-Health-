@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.CommentDao" >
+
+   <!--显示-->
+    <select id="comshow" parameterType="String" resultType="Comment">
+    	select * from t_comment JOIN t_customer on t_customer.customer_id = t_comment.customer_id  
+    </select>
+   
+    <!--删除-->
+    <delete id="comdel" parameterType="Integer">
+    	delete from t_comment where comment_id =#{comment_id}
+    </delete>
+    
+    <!-- 查询 -->
+   <!--  <select id="serachUser" resultType="User">
+    	select *from t_sys_user where user_name like "%"#{user_name}"%"
+    </select>--> 
+</mapper>
