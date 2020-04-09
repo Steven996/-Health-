@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baidu.ueditor.ActionEnter;
 
+import dao.CommentDao;
 import po.Comment;
 import po.Commodity;
 import service.CommentService;
@@ -38,10 +40,10 @@ public class CommentController {
 		return "healthsquare";
 	}
 	//跳转发表评论
-	@RequestMapping(value = "/publishComment.action")
+	@RequestMapping(value = "/ueditor.action")
 	public String publishComment(){
 		System.out.println("我来了");
-		return "publishComment";
+		return "ueditor";
 	}
 	//跳转登录页面
 	@RequestMapping(value = "/customerlogin.action")
@@ -54,11 +56,24 @@ public class CommentController {
 	@ResponseBody
 	public String delm(int comment_id) {
 		int row = commentService.comdel(comment_id);
+		System.out.println(row);
 		if(row > 0) {
 			return "OK";
 		}
 		else {
 			return "FAIL";
+		}
+	}
+	@RequestMapping(value = "/comment/serachcom.action")
+	public String serachcom(@Param(value="customer_name")String customer_name,Model model) {
+		List searchcomlist = commentService.serachcom(customer_name);
+		System.out.println(searchcomlist);
+		if(searchcomlist.isEmpty()) {
+			return "false4";
+		
+		}else {
+			model.addAttribute("searchcomlist", searchcomlist);
+			return "serachcomView";
 		}
 	}
 }

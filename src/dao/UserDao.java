@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import po.Comment;
 import po.Customer;
 import po.User;
 
@@ -21,12 +22,14 @@ public interface UserDao {
 	public int updateUser(Customer customer);
 	//添加用户
 	public int add(Customer customer);
+
 	//查询
-	public List serachUser(String customer_name);
+	public List serachUser(@Param(value="customer_name")String customer_name);
 	
-	public int addbmi(Customer customer);
+	public int addbmi(@Param(value="customer_bmi")String customer_bmi,@Param(value="customer_id")int customer_id);
 	
 	public Customer findCustomer(@Param("customer_name") String customer_name,
 			@Param("customer_pass") String customer_pass);
+	public int bbs(Comment comment);
 	
 }

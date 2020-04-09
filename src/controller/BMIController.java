@@ -24,10 +24,11 @@ public class BMIController {
 		return "BMItest";
 	}
 	@RequestMapping(value = "/bmiresultshow.action")
-	public String bmiresultshow(double customer_height, double customer_weight,Model model) {
+	public String bmiresultshow(double customer_height, double customer_weight,HttpSession session) {
 		String bmi = bmiService.bmitest(customer_height, customer_weight);
 		System.out.println(bmi);
-		model.addAttribute("bmi", bmi);
+		session.setAttribute("bmi", bmi);
 		return "BMIresult";
 	}
+	
 }

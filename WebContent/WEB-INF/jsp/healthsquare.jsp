@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@include file="header.jsp"%>
+
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() 
@@ -11,6 +11,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	 <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 	<!-- 引入css样式文件 -->
 	<!-- Bootstrap Core CSS -->
 	<link href="<%=basePath%>css/bootstrap.min.css" rel="stylesheet" />
@@ -46,6 +51,7 @@
             document.getElementById(subtract).style.display = "none";
         }
     </script>
+    <%@include file="header.jsp"%>
 <body>
 			<table class="table table-bordered table-striped">
 						<thead>
@@ -62,11 +68,11 @@
 									<td>${l1.customer_name}</td>
 									<td>${l1.comment_detail}</td>
 									<td>${l1.date}</td>
-									<td>
+									<!--  <td>
 										
 										<img id="" height="20px" weight="10px" src="${pageContext.request.contextPath}/images/like0.png"></img>
 								
-									</td>
+									</td>-->
 								</tr>
 							</c:forEach>
 						</tbody>

@@ -12,8 +12,8 @@
 	
 	<!-- 添加电影 -->
 	<insert id="addm" parameterType="Movie">
-	   insert into t_commodity(commodity_name,commodity_type,commodity_detail,commodity_picture)
-    	values(#{commodity_name},#{commodity_type},#{commodity_detail},{commodity_picture})
+	   insert into t_commodity(commodity_name,commodity_type,commodity_detail,commodity_picture,commodity_price,commodity_totalCount)
+    	values(#{commodity_name},#{commodity_type},#{commodity_detail},#{commodity_picture},#{commodity_price},#{commodity_totalCount})
 	</insert>
 	
 	<!-- 删除电影信息 -->
@@ -22,7 +22,7 @@
 	</delete>
 	
 	<!-- 更新电影 -->
-	<update id="updm" parameterType="Movie">
+	<update id="updm" parameterType="po.Commodity">
 	    update t_commodity 
 	    <set>
 	        <if test="commodity_name!=null">
@@ -36,7 +36,9 @@
 	        <if test="commodity_detail!=null">
 	            commodity_detail=#{commodity_detail},
 	        </if>
-	        
+	        <if test="commodity_picture!=null">
+	            commodity_picture=#{commodity_picture}
+	        </if>
 	    </set>
 	    where commodity_id=#{commodity_id}
 	</update>
@@ -46,8 +48,9 @@
 	    select * from t_commodity join t_commodity_type on t_commodity.commodity_type = t_commodity_type.commodity_type where commodity_id = #{commodity_id}
 	</select>
 	<!-- 查询 -->
-	<select id="search" resultType="Commodity">
-		select * from t_commodity join t_commodity_type on t_commodity.commodity_type = t_commodity_type.commodity_type where commodity_name like "%"#{commodity_name}"%"
+	<select id="moviesearch" resultType="Commodity">
+		select * from t_commodity tc join t_commodity_type tct on tc.commodity_type=tct.commodity_type
+		where commodity_name like "%${commodity_name}%"
 	</select>
 	
 	<!-- 视频 -->
@@ -72,7 +75,7 @@
 	    delete from t_commodity_type where commodity_type_id=#{commodity_type_id}
 	</delete>
 	
-	<!-- 修改电影分类 -->
+	<!-- 修改电影分类 
 	<update id="updtype" parameterType="CommodityType">
 	    update t_commodity_type
 	    <set>
@@ -81,7 +84,7 @@
 	        </if>
 	    </set>
 	    where commodity_type_id=#{commodity_type_id}
-	</update>
+	</update>-->
 	
 	<!-- 根据id查找电影分类 -->
 	<select id="getMovieTypeById" parameterType="int" resultType="CommodityType">

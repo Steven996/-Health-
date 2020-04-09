@@ -8,8 +8,8 @@
 	
 	<!-- 添加 -->
 	<insert id="newsadd" parameterType="News">
-	    	 insert into t_news(news_id,news_detail,news_title,news_pic)
-	         values(#{news_id},#{news_detail},#{news_title},#{news_pic})
+	    	 insert into t_news(news_detail,news_title,news_pic)
+	         values(#{news_detail},#{news_title},#{news_pic})
 	</insert>    
 	
 	<!-- 删除 -->
@@ -28,6 +28,9 @@
 	        <if test="news_title!=null">
 	            news_title=#{news_title},
 	        </if>
+	        <if test="news_pic!=null">
+	            news_pic=#{news_pic}
+	        </if>
 	    </set>
 	    where news_id=#{news_id}
 	</update>
@@ -36,5 +39,7 @@
 	<select id="getNewsById" parameterType="Integer" resultType="News">
 	    select * from t_news where news_id = #{news_id}
 	</select>
-	
+	<select id="newssearch" resultType="News">
+		select * from t_news where news_title like "%${news_title}%"
+	</select>
 </mapper>

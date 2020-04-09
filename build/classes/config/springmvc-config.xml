@@ -33,15 +33,14 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
     </bean>	
-    
-    
+
     
     <!-- 配置通用的多部分解析器 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="UTF-8" />
 		<!-- 指定所上传文件的总大小不能超过2048000B(2000KB)。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
-		<property name="maxUploadSize" value="2048000" />
+		<property name="maxUploadSize" value="5000000" />
 		<!--<property name="maxInMemorySize" value="40960"/>40Kb 将此值设置为需要的大小即可 -->
 	</bean>
 	

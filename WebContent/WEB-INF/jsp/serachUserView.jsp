@@ -22,7 +22,6 @@
 	<!-- Custom Fonts -->
 	<link href="<%=basePath%>css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 	<link href="<%=basePath%>css/boot-crm.css" rel="stylesheet" type="text/css" />
-
 <title>Insert title here</title>
 </head>
 <table class="table table-bordered table-striped">
@@ -39,15 +38,15 @@
 							<c:forEach items="${searchUserlist}" var="l1">
 							
 								<tr>
-									<td>${l1.user_id}</td>
-									<td><img src="${pageContext.request.contextPath }/${l1.user_photo}" width="100px" height="100px"/></td>
+									<td>${l1.customer_id}</td>
+									<td><img src="${pageContext.request.contextPath }/${l1.customer_photo}" width="100px" height="100px"/></td>
 							
-									<td>${l1.user_name}</td>
-									<td>${l1.user_pass}</td>
+									<td>${l1.customer_name}</td>
+									<td>${l1.customer_pass}</td>
 									<td>${l1.vip}</td>
 							</tr>
 							</c:forEach>
 						</tbody>
-						<button class="btn btn-default" onclick="window.location.href='list.action'">返回</button>
+						<button class="btn btn-primary" onclick="window.location.href='list.action'">返回</button>
 						</table>
 </html>

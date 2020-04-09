@@ -14,7 +14,7 @@
     </delete>
     
     <!-- 查询 -->
-   <!--  <select id="serachUser" resultType="User">
-    	select *from t_sys_user where user_name like "%"#{user_name}"%"
-    </select>--> 
+   <select id="serachcom" resultType="Comment">
+    select customer_name,comment_detail,date FROM t_comment tcom,t_customer tcu where tcom.customer_id = tcu.customer_id and customer_name like '%${customer_name}%'   
+   </select>
 </mapper>

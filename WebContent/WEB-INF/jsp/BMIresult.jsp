@@ -10,7 +10,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<!-- 引入css样式文件 -->
 	<!-- Bootstrap Core CSS -->
 	<link href="<%=basePath%>css/bootstrap.min.css" rel="stylesheet" />
@@ -24,6 +24,7 @@
 	<link href="<%=basePath%>css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 	<link href="<%=basePath%>css/boot-crm.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="https://cdn.staticfile.org/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" href="<%=basePath%>layui/css/layui.css">
 </head>
 <!-- 引入js文件 -->
 <!-- jQuery -->
@@ -36,20 +37,41 @@
 <script src="<%=basePath%>js/jquery.dataTables.min.js"></script>
 <script src="<%=basePath%>js/dataTables.bootstrap.min.js"></script>
 <!-- Custom Theme JavaScript -->
-<script src="<%=basePath%>js/sb-admin-2.js"></script>		
+<script src="<%=basePath%>js/sb-admin-2.js"></script>	
+<script src="<%=basePath%>layui/layui.js"></script>	
 <!-- 电影缩略图 -->
+	<script type="text/javascript">
+		function go(data) {
+			//confirm("确定上传数据?");
+		    if(confirm('确定确定上传数据?')) {
+		    	$.post("${pageContext.request.contextPath }/user/addbmi.action",
+		    	function(data){
+		    		
+		    	            if(data =="OK"){
+		    	                alert("上传成功！");
+		    	            }else{
+		    	                alert("上传失败！");
+		    	                window.location.reload();
+		    	            }
+		    	        });
+		    	    }
+		}
+	</script>
 <h3 style="color:white"><b></b></h3>
-	
+
 <body text-align:center>
   <div  class="box12">
 		<img alt="" width="600px" height="300px" src="images/BMI2.jpg">
 	 <div >
+		
   		<form action="${pageContext.request.contextPath }/user/addbmi.action" method="post" >
   			<h5>男性平均BMI为 24.4</h5></br>
-       <b><p><h3>您的BMI是:<font style="font-size:35px" face="宋体" color="red"> ${bmi}</font></h3></p></b></br>
-  	</div>
-  	</br><input value="保存数据" type="submit" class="btn btn-danger btn-xs"></input>
-  	 </form>
+  			
+       <b><p><h3>您好<p>${CUSTOMER_SESSION.customer_name}</p>您的BMI是:<font style="font-size:35px" face="宋体" color="red"> ${bmi}</font></h3></p></b></br>
+  	
+  	</br><button   type="button" class="layui-btn layui-btn-radius layui-btn-normal" onclick="go()">保存数据</button >
+  	    </form>
+  	 </div>
 </div>
 	
 <style> 

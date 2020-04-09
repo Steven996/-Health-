@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.UserDao;
+import po.Comment;
 import po.Customer;
 import po.User;
 @Service("userService")
@@ -42,7 +43,7 @@ public class UserServiceImp implements UserService{
 		return userDao.add(customer);
 	}
 	//ËÑË÷
-	public List serachUser(String customer_name){
+	public List serachUser(@Param(value="customer_name")String customer_name){
 		List customer = userDao.serachUser(customer_name);
 		return customer;
 	}
@@ -54,11 +55,15 @@ public class UserServiceImp implements UserService{
 		return customer;
 	}
 	@Override
-	public int addbmi(Customer customer) {
+	public int addbmi(@Param(value="customer_bmi")String customer_bmi,@Param(value="customer_id")int customer_id) {
 		// TODO Auto-generated method stub
-		return userDao.addbmi(customer);
+		return userDao.addbmi(customer_bmi, customer_id);
 	}
 	
+	public int bbs(Comment comment) {
+		return userDao.bbs(comment);
+	}
+
 	
 
 }

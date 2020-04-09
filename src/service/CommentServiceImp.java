@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import dao.CommentDao;
@@ -20,5 +21,7 @@ public class CommentServiceImp implements CommentService{
 	public int comdel(int comment_id) {
 		return commentDao.comdel(comment_id);
 	}
-	
+	public List serachcom(@Param(value="customer_name")String customer_name) {
+		return commentDao.serachcom(customer_name);
+	}
 }

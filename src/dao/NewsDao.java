@@ -2,6 +2,8 @@ package dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import po.Commodity;
 import po.News;
 
@@ -20,4 +22,6 @@ public interface NewsDao {
 		
 		//通过id获取信息
 		public News getNewsById(int news_id);
+		//查询
+		public List newssearch(@Param(value="news_title")String news_title);
 }

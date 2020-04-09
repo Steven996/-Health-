@@ -37,7 +37,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${searchlist}" var="l1">
+							<c:forEach items="${commodity}" var="l1">
 							
 								<tr>
 									<td>${l1.commodity_id}</td>

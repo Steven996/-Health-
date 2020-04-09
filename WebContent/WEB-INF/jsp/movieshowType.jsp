@@ -27,26 +27,23 @@
 </head>
 <body>
 <!-- 左侧显示列表部分 start-->
-	<div class="navbar-default sidebar" role="navigation">
-		<div class="sidebar-nav navbar-collapse">
-			<ul class="nav" id="side-menu">
-				<li class="sidebar-search">
-				<form action="serachUser.action">
-					<div class="input-group custom-search-form">
-						<input type="text" class="form-control" name="username" placeholder="查询内容...">
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="submit">
-								<i class="fa fa-search" style="padding: 3px 0 3px 0;"></i>
-							</button>
-						</span>
-					</div> 
-					</form>
-				</li>
-				<li>
+<nav class="navbar navbar-default" role="navigation">
+		<div>
+		 <img src="${pageContext.request.contextPath}/images/rainbow.jpg"   class="img-circle" height="45" width="45" alt="rainbow">
+		
+        <a class="navbar-brand" href="#">彩虹健康资讯管理服务平台</a>
+
+       
+        </div>
+        
+</nav>
+<div class="collapse navbar-collapse" id="example-navbar-collapse">
+					<ul class="nav navbar-nav">
+					<li>
 				      <a href="${pageContext.request.contextPath }/movie/showMovieType.action" class="active">
 				        <i class="fa fa-dashboard fa-fw" ></i> 商品分类管理
 				      </a>
-				</li>				
+					</li>				
 				<li>
 				    <a href="${pageContext.request.contextPath }/movie/show.action">
 				      <i class="fa fa-edit fa-fw"></i> 商品管理
@@ -62,7 +59,8 @@
 				    <a href="${pageContext.request.contextPath }/comment/comshow.action">
 				      <i class="icon ion-ios-analytics" ></i> 评论管理
 				    </a>
-				    <li>
+				</li>
+				<li>
 				    <a href="${pageContext.request.contextPath }/news/show.action">
 				      <i class="icon ion-star" ></i> 资讯管理
 				    </a>
@@ -71,18 +69,27 @@
 				    <a href="${pageContext.request.contextPath }/logout.action">
 				      <i class="icon ion-ios-eye" ></i> 退出
 				    </a>
-				</li>	
-				</li>				
+				</li>
+				<li>
+				<div class="pull-right info" >
+				${USER_SESSION.user_name}&nbsp;<a href="#"><i class="fa fa-circle text-success"></i>在线</a>
+	   			</div>	
+	   			</li>	
 			</ul>
-		</div>
-	</div>
+			
+</div><!--  
+<form action="serachUser.action">
+					<div class="input-group custom-search-form">
+						<input type="text" class="form-control" name="username" placeholder="查询内容...">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="submit">
+								<i class="fa fa-search" style="padding: 3px 0 3px 0;"></i>
+							</button>
+						</span>
+					</div> 
+					</form>-->
 	<!-- 左侧显示列表部分 end--> 
-	<div id="page-wrapper">
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="page-header">商品分类管理</h1>
-			</div>
-		</div>
+	
 			<a href="#" class="btn btn-primary" data-toggle="modal" 
 		           data-target="#newCateDialog" >新建分类</a>
 			<table class="table table-bordered table-striped">

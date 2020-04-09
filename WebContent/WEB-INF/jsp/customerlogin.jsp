@@ -27,7 +27,7 @@ function check(){
 </script>
 </head>
 <body leftMargin=0 topMargin=0 marginwidth="0" marginheight="0"
-	background="${pageContext.request.contextPath}/images/welc.png">
+	background="${pageContext.request.contextPath}/images/welc.png"  style="background-repeat:repeat">
 <div ALIGN="center">
 <table border="0" width="100%" cellspacing="0" cellpadding="0"
                                                            id="table1">
@@ -68,8 +68,9 @@ function check(){
 		</a>
 		 <p><input type="checkbox" name="vehicle" value="Bike" />记住我</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		 </form>&nbsp;&nbsp;&nbsp;
-		 <a href="${pageContext.request.contextPath }/customerlogin.action">
-    				还没有账号？<b>立即注册!</b>
+		 <a href="${pageContext.request.contextPath }/customer/add.action">
+    				还没有账号？
+    	<b>立即注册!</b>
 		</a>
 	 </fieldset>
 	</td>

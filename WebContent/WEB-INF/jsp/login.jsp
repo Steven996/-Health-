@@ -42,7 +42,7 @@ function check(){
 	 <fieldset style="width: 70%; margin: 0px auto;">
 		  <legend>
 		     <font style="font-size:25px" face="宋体" color="black">
-		          欢迎使用彩虹健康管理系统
+		          欢迎使用彩虹健康资讯服务管理平台
 		     </font>
 		  </legend> 
 		<font color="red">

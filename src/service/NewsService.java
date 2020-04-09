@@ -2,6 +2,8 @@ package service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import po.News;
 
 public interface NewsService {
@@ -19,4 +21,6 @@ public interface NewsService {
 	
 	//通过id获取信息
 	public News getNewsById(int news_id);
+	//查询
+	public List newssearch(@Param(value="news_title")String news_title);
 }

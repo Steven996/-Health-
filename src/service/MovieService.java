@@ -2,6 +2,8 @@ package service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import po.Commodity;
 import po.CommodityType;
 import po.Movie;
@@ -25,7 +27,7 @@ public interface MovieService {
 		public Commodity getMovieById(int commodity_id);
 		
 		//搜索
-		public List<Commodity> search(String commodity_name);
+		public List moviesearch(@Param(value="commodity_name")String commodity_name);
 		
 		//获取视频
 //		public List<Movie> getVideo();
@@ -43,7 +45,7 @@ public interface MovieService {
 		public int deltype(int commodity_type_id);
 		
 		//修改电影分类
-		public int updtype(CommodityType commodityType);
+//		public int updtype(CommodityType commodityType);
 		
 		//通过id获取电影分类
 		public CommodityType getMovieTypeById(int commodity_type_id);

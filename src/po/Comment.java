@@ -1,7 +1,7 @@
 package po;
 
 public class Comment {
-	private String customer_id;
+	private int customer_id;
 	private String comment_detail;
 	private String date;
 	private int comment_id;
@@ -13,10 +13,10 @@ public class Comment {
 	public void setCustomer_name(String customer_name) {
 		this.customer_name = customer_name;
 	}
-	public String getCustomer_id() {
+	public int getCustomer_id() {
 		return customer_id;
 	}
-	public void setCustomer_id(String customer_id) {
+	public void setCustomer_id(int customer_id) {
 		this.customer_id = customer_id;
 	}
 	public String getComment_detail() {
@@ -37,5 +37,8 @@ public class Comment {
 	public void setComment_id(int comment_id) {
 		this.comment_id = comment_id;
 	}
-	
+	public String toString() {
+		return "comment [comment_id=" + comment_id + ", customer_name=" + customer_name+","
+				+ "comment_detail="+comment_detail+",date="+date+"]";
+	}
 }

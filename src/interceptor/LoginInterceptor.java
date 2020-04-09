@@ -63,9 +63,21 @@ public class LoginInterceptor implements HandlerInterceptor {
 		if (url.indexOf("/movie/getMovieById.action") >= 0) {
 			return true;
 		}
-		
-		
-		
+		if (url.indexOf("/customer/add.action") >= 0) {
+			return true;
+		}
+		if (url.indexOf("/user/add.action") >= 0) {
+			return true;
+		}
+		if (url.indexOf("/ueditor.action") >= 0) {
+			return true;
+		}
+		if(url.indexOf("/user/bbs.action") >= 0) {
+			return true;
+		}
+		if(url.indexOf("/customer/me.action") >= 0) {
+			return true;
+		}
 		// ªÒ»°Session
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("USER_SESSION");

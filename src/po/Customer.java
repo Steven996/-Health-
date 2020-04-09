@@ -8,7 +8,7 @@ public class Customer {
 	private int vip;
 	private double customer_height;
 	private double customer_weight;
-	private double customer_bmi;
+	private String customer_bmi;
 	private String customer_tel;
 	public int getCustomer_id() {
 		return customer_id;
@@ -52,10 +52,10 @@ public class Customer {
 	public void setCustomer_weight(double customer_weight) {
 		this.customer_weight = customer_weight;
 	}
-	public double getCustomer_bmi() {
+	public String getCustomer_bmi() {
 		return customer_bmi;
 	}
-	public void setCustomer_bmi(double customer_bmi) {
+	public void setCustomer_bmi(String customer_bmi) {
 		this.customer_bmi = customer_bmi;
 	}
 	public String getCustomer_tel() {

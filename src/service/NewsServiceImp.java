@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,10 @@ public class NewsServiceImp implements NewsService{
 	public News getNewsById(int news_id) {
 		// TODO Auto-generated method stub
 		return newsDao.getNewsById(news_id);
+	}
+	//≤È—Ø
+	public List newssearch(@Param(value="news_title")String news_title) {
+		return newsDao.newssearch(news_title);
 	}
 	
 }

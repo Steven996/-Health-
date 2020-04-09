@@ -19,17 +19,17 @@
     <select id="showUser" parameterType="String" resultType="Customer">
     	select * from t_customer
     </select>
-    <!--增添用户-->
+    <!--增添用户/用户注册-->
     <insert id="add" parameterType="po.Customer">
-    	insert into t_customer (customer_name,customer_pass)
-    	values(#{customer_name},#{customer_pass})
+    	insert into t_customer (customer_name,customer_pass,customer_photo,customer_tel)
+    	values(#{customer_name},#{customer_pass},#{customer_photo},#{customer_tel})
     </insert>
     <!--根据用户id查找用户-->
     <select id="getUserById" parameterType="Integer" resultType="Customer">
 	    select * from t_customer where customer_id = #{customer_id}
 	</select>
-	 <!-- BMI测试  -->
-	 <update id="addbmi" parameterType="Customer">
+	 <!-- 提交BMI测试结果  -->
+	 <update id="addbmi">
 	    update t_customer set customer_bmi = #{customer_bmi} where customer_id = #{customer_id}
 	 </update>
    
@@ -40,12 +40,16 @@
 	        <if test="customer_name!=null">
 	            customer_name=#{customer_name},
 	        </if>
-	      <if test="customer_pass!=null">
+	      	<if test="customer_pass!=null">
 	            customer_pass=#{customer_pass},
 	        </if>
 	        <if test="vip!=-1">
-	        	vip=#{vip}
+	        	vip=#{vip},
 	        </if>
+	        <if test="customer_photo!=null">
+	        	customer_photo=#{customer_photo}
+			</if>
+			
 	    </set>
 	    where customer_id=#{customer_id}
     </update>
@@ -55,6 +59,12 @@
     </delete>
     <!-- 查询 -->
     <select id="serachUser" resultType="Customer">
-    	select * from t_customer where customer_name like "%"#{customer_name}"%"
+    	select * from t_customer where customer_name like "%${customer_name}%"
     </select>
+    <!-- 发表评论 -->
+    <insert id="bbs" parameterType="po.Comment">
+    	insert into t_comment (customer_id,comment_detail,date)
+    	 values(#{customer_id},#{comment_detail},now())
+    </insert>
+    
 </mapper>

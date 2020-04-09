@@ -3,15 +3,19 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FilenameUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,7 +42,7 @@ public class MovieController {
 		model.addAttribute(news);
 		return "classdetail";
 	}
-	//显示电影列表
+	//显示列表
 	@RequestMapping(value = "/movie/show.action")
 		public String show(Model model){
 			List<Commodity> movielist = movieService.show();
@@ -54,30 +58,30 @@ public class MovieController {
 //			System.out.println(movielist);
 			return "healthhome";
 		}
-	//添加电影
-	@RequestMapping(value = "/movie/add.action")
-	@ResponseBody
-		public String addm(@RequestParam(value = "picture") MultipartFile picture,Model model,Commodity commodity,HttpSession session) throws Exception{
-		String realPath=session.getServletContext().getRealPath("/images");
-		System.out.println(realPath);
-		int index = picture.getOriginalFilename().lastIndexOf(".");//拿到文件后缀名
-		String suffix = picture.getOriginalFilename().substring(index+1);//从.后面截取后缀名
-		String fileName = realPath+File.separator+"."+suffix;
-		model.addAttribute("pictureName", picture.getOriginalFilename());
-		picture.transferTo(new File(realPath, picture.getOriginalFilename()));
-		
-		System.out.println(fileName);
-		
-		try {
-			picture.transferTo(new File(fileName));//上传，到此步上传结束
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
+	//添加
+	@RequestMapping(value = "/movie/add.action",method= RequestMethod.POST)
+//	@ResponseBody
+		public String addm(Commodity commodity,HttpServletRequest request,MultipartFile pictureFile) throws Exception{
+		System.out.println("我来了");
+		//使用UUID给图片重命名，并去掉四个“-”
+		String name = UUID.randomUUID().toString().replaceAll("-", "");
+		//获取文件的扩展名
+
+		String ext = FilenameUtils.getExtension(pictureFile.getOriginalFilename());
+		//设置图片上传路径
+	
+		String url = request.getSession().getServletContext().getRealPath("/images");
+	
+		System.out.println(url);
+		//以绝对路径保存重名命后的图片
+		pictureFile.transferTo(new File(url+"/"+name + "." + ext));
+		//把图片存储路径保存到数据库
+		commodity.setCommodity_picture("images/"+name + "." + ext);
 		int row = movieService.addm(commodity);
 			if(row>0) {
-				return "OK";
+				return "redirect:/movie/show.action";
 			}else {
-				return "FAIL";
+				return "redirect:/falied.action";
 			}
 		}
 	
@@ -108,27 +112,41 @@ public class MovieController {
 	
 	//修改电影
 	@RequestMapping(value = "/movie/upd.action")
-	@ResponseBody
-		public String updm(Commodity commodity) {
+//	@ResponseBody
+		public String updm(Commodity commodity,HttpServletRequest request,MultipartFile pictureFile)throws Exception {
+		//使用UUID给图片重命名，并去掉四个“-”
+		String name = UUID.randomUUID().toString().replaceAll("-", "");
+		//获取文件的扩展名
+
+		String ext = FilenameUtils.getExtension(pictureFile.getOriginalFilename());
+		//设置图片上传路径
+	
+		String url = request.getSession().getServletContext().getRealPath("/images");
+	
+		System.out.println(url);
+		//以绝对路径保存重名命后的图片
+		pictureFile.transferTo(new File(url+"/"+name + "." + ext));
+		//把图片存储路径保存到数据库
+		commodity.setCommodity_picture("images/"+name + "." + ext);
 		System.out.println(commodity);
+		
 		int rows = movieService.updm(commodity);
 		 System.out.println(rows);
 		 
 	    if(rows > 0){
 	    	System.out.println("电影修改成功");
-	        return "OK";
+	        return "redirect:/movie/show.action";
 	    }else{
 	    	System.out.println("电影修改失败");
 	        return "FAIL";
 	    }
 	}
-	//修改的id
+	//查询修改的id
 	@RequestMapping(value = "/movie/getMovieByIds.action")
-
+	@ResponseBody
 	public Commodity getMovieByIds(Integer commodity_id) {
 		Commodity commodity = movieService.getMovieById(commodity_id);
 		System.out.println(commodity);
-		System.out.println("www");
 		return commodity;
 	}
 	//通过id获取电影信息
@@ -152,15 +170,15 @@ public class MovieController {
 				return "detailpc";
 			}
 	//搜索
-	@RequestMapping(value="/movie/search.action")
-		public String search(String commodity_name,Model model) {
-			List searchlist = movieService.search(commodity_name);
-			if(searchlist.isEmpty()) {
+	@RequestMapping(value="/movie/moviesearch.action")
+		public String moviesearch(@Param(value="commodity_name")String commodity_name,Model model) {
+			List commodity = movieService.moviesearch(commodity_name);
+			System.out.println("我是来他妈查询的");
+			System.out.println(commodity);
+			if(commodity.isEmpty()) {
 				return "false";
 			}else {
-				System.out.println("搜索的"+commodity_name);
-				System.out.println("搜索结果为："+searchlist);
-				model.addAttribute("searchlist",searchlist);
+				model.addAttribute("commodity",commodity);
 				return "searchView";
 				
 			}
@@ -169,7 +187,7 @@ public class MovieController {
 //客户端搜索
 	@RequestMapping(value="/movie/customersearch.action")
 	public String customersearch(String commodity_name,Model model) {
-		List searchlist = movieService.search(commodity_name);
+		List searchlist = movieService.moviesearch(commodity_name);
 		if(searchlist.isEmpty()) {
 			return "false";
 		}else {
@@ -226,20 +244,20 @@ public class MovieController {
 		}
 	
 	//修改电影分类
-	@RequestMapping(value = "/movie/updtype.action")
-	@ResponseBody
-		public String updtype(CommodityType commodityType) {
-		int rows = movieService.updtype(commodityType);
-		
-		System.out.println(rows);
-	    if(rows > 0){
-	    	System.out.println("电影分类修改成功");
-	        return "OK";
-	    }else{
-	    	System.out.println("电影分类修改失败");
-	        return "FAIL";
-	    }
-	}
+//	@RequestMapping(value = "/movie/updtype.action")
+//	@ResponseBody
+//		public String updtype(CommodityType commodityType) {
+//		int rows = movieService.updtype(commodityType);
+//		
+//		System.out.println(rows);
+//	    if(rows > 0){
+//	    	System.out.println("电影分类修改成功");
+//	        return "OK";
+//	    }else{
+//	    	System.out.println("电影分类修改失败");
+//	        return "FAIL";
+//	    }
+//	}
 	
 	//通过id获取电影分类信息
 	@RequestMapping(value = "/movie/getMovieTypeById.action")
@@ -249,4 +267,8 @@ public class MovieController {
 			System.out.println(movie);
 			return movie;
 		}
+	@RequestMapping(value = "/falied.action",method = RequestMethod.GET)
+	public String failed(){
+		return "500";
+	}
 }

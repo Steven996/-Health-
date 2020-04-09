@@ -17,16 +17,17 @@ public class BMIServiceImp implements BMIService{
 		String suggest = null;
 		double bmi = customer_weight/(customer_height*customer_height);
 		if(bmi<=18.4) {
-			suggest = "      为偏瘦体质，请合理饮食";
+			suggest = "为偏瘦体质，请合理饮食";
 		}else if(bmi>=18.5  && bmi<=23.9) {
-			suggest = "      为正常体质，请合理饮食";
+			suggest = "为正常体质，请合理饮食";
 		}else if(bmi>=24.0 && bmi<=27.9) {
-			suggest = "      为过重体质，请合理饮食";
+			suggest = "为过重体质，请合理饮食";
 		}else if(bmi>=28.0) {
-			suggest = "      为肥胖体质，请合理饮食";
+			suggest = "为肥胖体质，请合理饮食";
 		}
-		System.out.println(bmi+suggest);
+		
 		return df.format(bmi)+""+suggest;
 	}
+	
 	
 }

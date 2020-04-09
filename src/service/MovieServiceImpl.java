@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,9 +47,9 @@ public class MovieServiceImpl implements MovieService{
 		}
 	
 	//搜索
-	public List<Commodity> search(String commodity_name){
-		List searchlist = movieDao.search(commodity_name);
-		return searchlist;
+	public List moviesearch(@Param(value="commodity_name")String commodity_name){
+		List commodity = movieDao.moviesearch(commodity_name);
+		return commodity;
 	}
 	
 	
@@ -71,10 +72,10 @@ public class MovieServiceImpl implements MovieService{
 	}
 	
 	//修改电影分类
-	public int updtype(CommodityType commodityType) {
-		return movieDao.updtype(commodityType);
-	}
-	
+//	public int updtype(CommodityType commodityType) {
+//		return movieDao.updtype(commodityType);
+//	}
+//	
 	//通过id获取电影分类
 	public CommodityType getMovieTypeById(int commodity_type_id) {
 		return movieDao.getMovieTypeById(commodity_type_id);
