@@ -4,7 +4,7 @@
 <html>
 <head>
 <span style="font-size:18px;"> </span><span style="font-size:24px;">
-<meta http-equiv="refresh" content="3;URL=list.action">
+<meta http-equiv="refresh" content="3;URL=healthhomeshow.action">
 </span> 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 

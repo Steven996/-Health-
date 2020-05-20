@@ -52,7 +52,12 @@ function check(){
     if(customer_height=="" || customer_weight==""){
     	$("#message").text("请填写身高和体重字段！");
         return false;
-    } 
+    }else if(customer_height<'0'||(customer_height>'9'&&customer_height<'A')||(customer_height>'Z'&&customer_height<'a')||customer_height>'z'){
+    	$("#message").text("请合法输入身高");
+    return false;
+    }else if(customer_weight<'0'||(customer_weight>'9'&&customer_weight<'A')||(customer_weight>'Z'&&customer_weight<'a')||customer_weight>'z'){
+    	$("#message").text("请合法输入体重");
+    	return false;}
     return true;
 }
 </script>

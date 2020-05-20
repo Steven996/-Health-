@@ -237,8 +237,8 @@ function add() {
 						<div class="col-sm-10">
 							<select	class="form-control" id="new_cateFrom" name="commodity_type">
 							<option value="-1">--请选择--</option>
-							<option value="1">医疗器材</option>
-							<option value="2">医疗药品</option>
+							<option value="1">医疗药品</option>
+							<option value="2">医疗器材</option>
 						</select>
 					</div>
 				</div>

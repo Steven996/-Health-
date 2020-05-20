@@ -50,10 +50,10 @@
 							销量:${commodity.commodity_totalCount}
 						</div>
 						<div class="panel-footer">
-							类别:${commodity.commodity_detail}
+							类别:${commodity.commodity_type_name}
 						</div>
 						<div class="panel-body">
-							商品详情:${commodity.commodity_type_name}
+							商品详情:${commodity.commodity_detail}
 						</div>
 					</div>
 				</div>

@@ -189,7 +189,7 @@ public class MovieController {
 	public String customersearch(String commodity_name,Model model) {
 		List searchlist = movieService.moviesearch(commodity_name);
 		if(searchlist.isEmpty()) {
-			return "false";
+			return "false2";
 		}else {
 			System.out.println("搜索的"+commodity_name);
 			System.out.println("搜索结果为："+searchlist);

@@ -82,7 +82,7 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="${pageContext.request.contextPath}/customer/me.action">我的信息</a></li>
-							<li><a href="#">我的收藏</a></li>
+							
 						</ul>
 					</li>
             </ul>

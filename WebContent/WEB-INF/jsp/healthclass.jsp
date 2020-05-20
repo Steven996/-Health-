@@ -116,7 +116,7 @@ layui.use('layer', function(){
                     <div class="card-body">
                         <h5 class="card-title">${e.news_title}</h5>
                         <a class="btn btn-outline-success btn-sm" href="${pageContext.request.contextPath}/movie/getclassById.action?news_id=${e.news_id}">[详情]</a>
-                        <a class="btn btn-outline-danger btn-sm" href="#"><i class="fas fa-heart"></i></a>
+                       
                     </div>
                 </div>
                 
@@ -124,33 +124,7 @@ layui.use('layer', function(){
           </b:forEach>  
         </div>
 </section>
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<ul class="pagination">
-				<li>
-					 <a href="#">Prev</a>
-				</li>
-				<li>
-					 <a href="#">1</a>
-				</li>
-				<li>
-					 <a href="#">2</a>
-				</li>
-				<li>
-					 <a href="#">3</a>
-				</li>
-				<li>
-					 <a href="#">4</a>
-				</li>
-				<li>
-					 <a href="#">5</a>
-				</li>
-				<li>
-					 <a href="#">Next</a>
-				</li>
-			</ul>
-		</div>
-	</div>
+	
 </div>
 </body>
 </html>
