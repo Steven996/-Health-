@@ -22,25 +22,9 @@
 	</delete>
 	
 	<!-- 更新电影 -->
-	<update id="updm" parameterType="po.Commodity">
-	    update t_commodity 
-	    <set>
-	        <if test="commodity_name!=null">
-	            commodity_name=#{commodity_name},
-	        </if>
-
-	        <if test="commodity_type!=null">
-	            commodity_type=#{commodity_type},
-	        </if>
-	        
-	        <if test="commodity_detail!=null">
-	            commodity_detail=#{commodity_detail},
-	        </if>
-	        <if test="commodity_picture!=null">
-	            commodity_picture=#{commodity_picture}
-	        </if>
-	    </set>
-	    where commodity_id=#{commodity_id}
+	<update id="updm" parameterType="Commodity">
+	    update t_commodity set commodity_name=#{commodity_name},commodity_type=#{commodity_type},commodity_detail=#{commodity_detail},
+	      commodity_picture=#{commodity_picture} where commodity_id=#{commodity_id}
 	</update>
 	
 	<!-- 详情 -->
@@ -75,16 +59,10 @@
 	    delete from t_commodity_type where commodity_type_id=#{commodity_type_id}
 	</delete>
 	
-	<!-- 修改电影分类 
+	<!--  修改电影分类 -->
 	<update id="updtype" parameterType="CommodityType">
-	    update t_commodity_type
-	    <set>
-	        <if test="commodity_type_name!=null">
-	            commodity_type_name=#{commodity_type_name},
-	        </if>
-	    </set>
-	    where commodity_type_id=#{commodity_type_id}
-	</update>-->
+	    update t_commodity_type set commodity_type_name=#{commodity_type_name} where commodity_type_id=#{commodity_type_id}
+	</update>
 	
 	<!-- 根据id查找电影分类 -->
 	<select id="getMovieTypeById" parameterType="int" resultType="CommodityType">

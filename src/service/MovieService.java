@@ -45,7 +45,7 @@ public interface MovieService {
 		public int deltype(int commodity_type_id);
 		
 		//修改电影分类
-//		public int updtype(CommodityType commodityType);
+		public int updtype(CommodityType commodityType);
 		
 		//通过id获取电影分类
 		public CommodityType getMovieTypeById(int commodity_type_id);

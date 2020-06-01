@@ -216,7 +216,7 @@ function search(){
 	}
 
 //通过id获取修改的电影分类信息
-	function editUser(typ_id) {
+	function editUser(commodity_type_id) {
 	
 	$.post("${pageContext.request.contextPath}/movie/getMovieTypeById.action",{"commodity_type_id":commodity_type_id},function(data){
 		 $("#commodity_type_id").val(data.commodity_type_id);

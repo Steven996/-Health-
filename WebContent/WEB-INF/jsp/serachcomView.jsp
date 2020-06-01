@@ -61,8 +61,9 @@
 								<th>用户</th>		
 								<th>评论详情</th>
 								<th>时间</th>
-									
-								<th>操作</th>				
+								
+								<th>操作</th>		
+										
 							</tr>
 						</thead>
 						<tbody>

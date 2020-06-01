@@ -56,6 +56,7 @@ public class CommentController {
 	@ResponseBody
 	public String delm(int comment_id) {
 		int row = commentService.comdel(comment_id);
+		System.out.println("ÎÒÀ´ÁË");
 		System.out.println(row);
 		if(row > 0) {
 			return "OK";

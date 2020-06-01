@@ -15,6 +15,6 @@
     
     <!-- 查询 -->
    <select id="serachcom" resultType="Comment">
-    select customer_name,comment_detail,date FROM t_comment tcom,t_customer tcu where tcom.customer_id = tcu.customer_id and customer_name like '%${customer_name}%'   
+    select comment_id, customer_name,comment_detail,date FROM t_comment tcom,t_customer tcu where tcom.customer_id = tcu.customer_id and customer_name like '%${customer_name}%'   
    </select>
 </mapper>

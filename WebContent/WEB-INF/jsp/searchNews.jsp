@@ -32,7 +32,7 @@
 								<th>资讯标题</th>
 								<th>资讯详情</th>
 								<th>图片</th>
-								<th>操作</th>
+						
 							</tr>
 						</thead>
 						<tbody>

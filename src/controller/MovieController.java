@@ -115,17 +115,17 @@ public class MovieController {
 //	@ResponseBody
 		public String updm(Commodity commodity,HttpServletRequest request,MultipartFile pictureFile)throws Exception {
 		//使用UUID给图片重命名，并去掉四个“-”
-		String name = UUID.randomUUID().toString().replaceAll("-", "");
-		//获取文件的扩展名
+				String name = UUID.randomUUID().toString().replaceAll("-", "");
+				//获取文件的扩展名
 
-		String ext = FilenameUtils.getExtension(pictureFile.getOriginalFilename());
-		//设置图片上传路径
-	
-		String url = request.getSession().getServletContext().getRealPath("/images");
-	
-		System.out.println(url);
-		//以绝对路径保存重名命后的图片
-		pictureFile.transferTo(new File(url+"/"+name + "." + ext));
+				String ext = FilenameUtils.getExtension(pictureFile.getOriginalFilename());
+				//设置图片上传路径
+			
+				String url = request.getSession().getServletContext().getRealPath("/images");
+			
+				System.out.println(url);
+				//以绝对路径保存重名命后的图片
+				pictureFile.transferTo(new File(url+"/"+name + "." + ext));
 		//把图片存储路径保存到数据库
 		commodity.setCommodity_picture("images/"+name + "." + ext);
 		System.out.println(commodity);
@@ -134,13 +134,14 @@ public class MovieController {
 		 System.out.println(rows);
 		 
 	    if(rows > 0){
-	    	System.out.println("电影修改成功");
+	    	System.out.println("修改成功");
 	        return "redirect:/movie/show.action";
 	    }else{
-	    	System.out.println("电影修改失败");
-	        return "FAIL";
+	    	System.out.println("修改失败");
+	        return "redirect:/falied.action";
 	    }
 	}
+
 	//查询修改的id
 	@RequestMapping(value = "/movie/getMovieByIds.action")
 	@ResponseBody
@@ -244,20 +245,20 @@ public class MovieController {
 		}
 	
 	//修改电影分类
-//	@RequestMapping(value = "/movie/updtype.action")
-//	@ResponseBody
-//		public String updtype(CommodityType commodityType) {
-//		int rows = movieService.updtype(commodityType);
-//		
-//		System.out.println(rows);
-//	    if(rows > 0){
-//	    	System.out.println("电影分类修改成功");
-//	        return "OK";
-//	    }else{
-//	    	System.out.println("电影分类修改失败");
-//	        return "FAIL";
-//	    }
-//	}
+	@RequestMapping(value = "/movie/updtype.action")
+	@ResponseBody
+		public String updtype(CommodityType commodityType) {
+		int rows = movieService.updtype(commodityType);
+		
+		System.out.println(rows);
+	    if(rows > 0){
+	    	System.out.println("电影分类修改成功");
+	        return "OK";
+	    }else{
+	    	System.out.println("电影分类修改失败");
+	        return "FAIL";
+	    }
+	}
 	
 	//通过id获取电影分类信息
 	@RequestMapping(value = "/movie/getMovieTypeById.action")

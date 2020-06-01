@@ -189,8 +189,8 @@
 							</c:forEach>
 						</tbody>
 						</table>
-				</div>
-</div>
+		
+
 <!-- 创建用户 -->
 <div class="modal fade" id="newCateDialog" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel">

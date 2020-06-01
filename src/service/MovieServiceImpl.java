@@ -72,10 +72,10 @@ public class MovieServiceImpl implements MovieService{
 	}
 	
 	//修改电影分类
-//	public int updtype(CommodityType commodityType) {
-//		return movieDao.updtype(commodityType);
-//	}
-//	
+	public int updtype(CommodityType commodityType) {
+		return movieDao.updtype(commodityType);
+	}
+	
 	//通过id获取电影分类
 	public CommodityType getMovieTypeById(int commodity_type_id) {
 		return movieDao.getMovieTypeById(commodity_type_id);

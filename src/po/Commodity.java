@@ -59,7 +59,7 @@ public class Commodity {
 		this.commodity_type = commodity_type;
 	}
 	public String toString() {
-		return "Commodity [commodity_id="+commodity_id+",commodity_name="+commodity_name+",commodity_type="+commodity_type+",commodity_totalCount="+commodity_totalCount+","
+		return "Commodity [commodity_id="+commodity_id+",commodity_name="+commodity_name+",commodity_type="+commodity_type+",commodity_type_name="+commodity_type_name+",commodity_totalCount="+commodity_totalCount+","
 				+ "commodity_picture="+commodity_picture+",commodity_price="+commodity_price+",commodity_detail="+commodity_detail+"]";
 	}
 }
